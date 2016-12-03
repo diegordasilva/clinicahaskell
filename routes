@@ -1,0 +1,11 @@
+/                             HelloR                   GET
+/paciente/cadastro            CadastropacienteR        GET   POST
+/paciente/listar              ListarpacienteR          GET 
+/perfilpac/#PacienteId           PacienteR                GET   POST
+/medico/cadastro              CadastromedicoR          GET   POST
+/medico/listar                ListarmedicoR            GET
+/perfilmed/#MedicoId             MedicoR                  GET   POST
+/agendamento                  AgendamentoR             GET   POST
+/login                        LoginR                   GET   POST
+/logout                       LogoutR                  POST
+/static                       StaticR                  Static getStatic

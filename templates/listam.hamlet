@@ -1,0 +1,5 @@
+<h1> Medicos cadastradas:
+    $forall Entity mid medico <- listaM
+        <a href=@{MedicoR mid}> #{medicoNome medico} 
+            <form method=post action=@{MedicoR mid}> 
+                <input type="submit" value="Deletar"><br>
