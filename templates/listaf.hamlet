@@ -1,0 +1,5 @@
+<h1> Funcionarios cadastradas:
+    $forall Entity funcid funcionario <- listaF
+        <a href=@{FuncionarioR funcid}> #{funcionarioNome funcionario} 
+            <form method=post action=@{FuncionarioR funcid}> 
+                <input type="submit" value="Deletar"><br>

@@ -34,15 +34,15 @@ postCadastromedicoR = do
                     _ -> redirect CadastromedicoR
                     
 getMedicoR :: MedicoId -> Handler Html
-getMedicoR mid = do
-             medico <- runDB $ get404 mid 
+getMedicoR medid = do
+             medico <- runDB $ get404 medid 
              defaultLayout [whamlet| 
                  <h1> Seja bem-vindx #{medicoNome medico}
              |]
              
 postMedicoR :: MedicoId -> Handler Html
-postMedicoR mid = do
-     runDB $ delete mid
+postMedicoR medid = do
+     runDB $ delete medid
      redirect ListarmedicoR
 
 getListarmedicoR :: Handler Html

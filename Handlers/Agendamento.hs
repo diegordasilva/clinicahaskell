@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE QuasiQuotes       #-}
+
 module Handlers.Agendamento where
 import Foundation
 import Yesod
@@ -34,7 +35,7 @@ postAgendamentoR = do
                 case pacienteId of
                     Nothing -> redirect HelloR
                     Just pacienteStr -> do
-                        pid <- (return $ read $ unpack pacienteStr) :: Handler PacienteId
-                        sequence $ fmap (\mid -> runDB $ insert $ Agendamento pid mid) agendamentos
+                        pacid <- (return $ read $ unpack pacienteStr) :: Handler PacienteId
+                        sequence $ fmap (\medid -> runDB $ insert $ Agendamento pacid medid) agendamentos
                         defaultLayout [whamlet| <h1> Agendamento cadastradas com sucesso! |]
             _ -> redirect HelloR

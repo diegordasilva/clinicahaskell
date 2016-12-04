@@ -9,6 +9,7 @@ import Handlers.Agendamento
 import Handlers.Login
 import Handlers.Medico
 import Handlers.Paciente
+import Handlers.Funcionario
 
 import Database.Persist.Postgresql
 
@@ -53,20 +54,18 @@ getHelloR = defaultLayout $ do
 <section class="4u">
 <span class="pennant">
 <span class="fa fa-briefcase">
-<h3>Linguiça 1
-<p>Pacientes
+<h3>Area de Pacientes
 <a href=@{CadastropacienteR} class="button button-style1">Cadastro de Pacientes
 <section class="4u">
 <span class="pennant"><span class="fa fa-lock">
-<h3>Linguiça 2
-<p>Donec ornare neque ac sem. Mauris aliquet. Aliquam sem leo, vulputate sed, convallis at, ultricies quis, justo. Donec magna.
-<a href="linguica2.html" class="button button-style1">Saiba mais
-
+<h3>Area de Funcionarios
+<p>Texto funcionarios.
+<a href=@{CadastrofuncionarioR} class="button button-style1">Cadastro de Funcionarios
 <section class="4u">
 <span class="pennant"><span class="fa fa-globe">
-<h3>Linguiça 3
-<p>Curabitur sit amet nulla. Nam in massa. Sed vel tellus. Curabitur sem urna, consequat vel, suscipit in, mattis placerat, nulla. Sed ac leo.
-<a href="linguica3.html" class="button button-style1">Saiba mais
+<h3>Agendamento de consultas
+<p>Nesta area é possivel agendar consultas.
+<a href=@{AgendamentoR} class="button button-style1">Saiba mais
 
 <!-- Copyright -->
 <div id="copyright">

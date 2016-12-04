@@ -14,6 +14,15 @@ data Sitio = Sitio {getStatic :: Static, connPool :: ConnectionPool }
 
 share [mkPersist sqlSettings, mkMigrate "migrateAll"] [persistLowerCase|
 
+Funcionario
+    nome Text
+    telefone Int
+    cpf Int
+    end Text
+    email Text
+    senha Text
+    deriving Show
+
 Medico
    nome Text
    especialidade Text
@@ -55,6 +64,7 @@ instance Yesod Sitio where
     
     isAuthorized LoginR _ = return Authorized
     isAuthorized HelloR _ = return Authorized
+    isAuthorized CadastropacienteR _ = return Authorized
     isAuthorized _ _ = estaAutenticado
 
 estaAutenticado :: Handler AuthResult

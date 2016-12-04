@@ -46,3 +46,4 @@ executable         clinica
                    Handlers.Medico,
                    Handlers.Paciente,
                    Handlers.Login
+                   Handlers.Funcionario
