@@ -28,7 +28,7 @@ getCadastropacienteR :: Handler Html
 getCadastropacienteR = do
              (widget, enctype) <- generateFormPost formPaciente
              defaultLayout $ do 
-                -- addStylesheet $ StaticR teste_css
+                -- addStylesheet $ StaticR style_css
                  widgetForm CadastropacienteR enctype widget "Cadastro de Pacientes"
 
 postCadastropacienteR :: Handler Html
@@ -49,6 +49,7 @@ getPacienteR pid = do
              paciente <- runDB $ get404 pid 
              defaultLayout [whamlet| 
                  <h1> Seja bem-vindo #{pacienteNome paciente}
+                 <p>
                  <p> Dados pessoais:
                  <p>
                  <p> Nome: #{pacienteNome paciente}
@@ -56,6 +57,9 @@ getPacienteR pid = do
                  <p> CPF:##{pacienteCpf paciente}
                  <p> Endereço:#{pacienteEnd paciente}
                  <p> E-mail:#{pacienteEmail paciente}
+                 
+                 <p> Fazer agendamento de consulta: 
+                 <a href=@{AgendamentoR}>Agendamento</a>
              |]
              
 postPacienteR :: PacienteId -> Handler Html

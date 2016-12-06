@@ -53,6 +53,9 @@ getFuncionarioR funcid = do
                  <p> CPF:#{funcionarioCpf funcionario}
                  <p> Endereço:#{funcionarioEnd funcionario}
                  <p> E-mail:#{funcionarioEmail funcionario}
+                 
+                 <p>Cadastrar Médicos:
+                 <a href=@{CadastromedicoR}>Cadastro de Médicos</a>
              |]
              
 postFuncionarioR :: FuncionarioId -> Handler Html

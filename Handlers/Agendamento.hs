@@ -1,12 +1,16 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE QuasiQuotes       #-}
 
+
 module Handlers.Agendamento where
+
 import Foundation
 import Yesod
 import Database.Persist.Postgresql
 import Data.Text
 import Data.Monoid
+import Control.Monad.Logger (runStdoutLoggingT)
+import Data.Time.Calendar
 
 formAgendamento :: Form [MedicoId]
 formAgendamento = renderDivs $ areq (multiSelectField medicoLista) "Lista de medicos" Nothing
@@ -37,5 +41,5 @@ postAgendamentoR = do
                     Just pacienteStr -> do
                         pacid <- (return $ read $ unpack pacienteStr) :: Handler PacienteId
                         sequence $ fmap (\medid -> runDB $ insert $ Agendamento pacid medid) agendamentos
-                        defaultLayout [whamlet| <h1> Agendamento cadastradas com sucesso! |]
+                        defaultLayout [whamlet| <h1> Agendamento cadastrado com sucesso! |]
             _ -> redirect HelloR

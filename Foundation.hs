@@ -7,6 +7,8 @@ module Foundation where
 import Yesod
 import Yesod.Static
 import Data.Text
+--import Data.Time.Calendar
+import Control.Monad.Logger (runStdoutLoggingT)
 import Database.Persist.Postgresql
     ( ConnectionPool, SqlBackend, runSqlPool, runMigration )
 
@@ -42,7 +44,7 @@ Paciente
 Agendamento
     pacid PacienteId
     medid MedicoId
-    UniquePacienteMedico pacid medid
+   -- dia   Day
     deriving Show
    
 |]
