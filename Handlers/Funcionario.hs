@@ -41,14 +41,14 @@ postCadastrofuncionarioR = do
                               redirect (FuncionarioR funcid)
                     _ -> redirect CadastrofuncionarioR
                     
-getFuncionarioRindexR :: Handler Html
-getFuncionarioRindexR = do
+getFuncionarioindexR :: Handler Html
+getFuncionarioindexR = do
         defaultLayout $ do
             [whamlet|
                 <h1> Bem vindo.
                 <h2><a href=@{HelloR}>Home
                 <h2><a href=@{CadastrofuncionarioR}>Cadastro de Funcionario
-                <h2><a href=@{LoginR}>Login
+                <h2><a href=@{LoginfuncR}>Login
                 
             |]                    
 

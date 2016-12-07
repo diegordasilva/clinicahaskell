@@ -11,6 +11,7 @@
 /funcionario/listar           ListarfuncionarioR       GET
 /perfilfunc/#FuncionarioId    FuncionarioR             GET   POST
 /agendamento                  AgendamentoR             GET   POST
-/login                        LoginR                   GET   POST
+/loginpac                     LoginpacR                GET   POST
+/loginfunc                    LoginfuncR               GET   POST                
 /logout                       LogoutR                  POST
 /static                       StaticR                  Static getStatic

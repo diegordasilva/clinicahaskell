@@ -63,12 +63,11 @@ instance YesodPersist Sitio where
        runSqlPool f pool
 
 instance Yesod Sitio where
-    authRoute _ = Just LoginR
+    authRoute _ = Just LoginpacR
     
-    isAuthorized LoginR _ = return Authorized
+    isAuthorized LoginpacR _ = return Authorized
     isAuthorized HelloR _ = return Authorized
     isAuthorized CadastropacienteR _ = return Authorized
-    isAuthorized CadastrofuncionarioR _ = return Authorized
     isAuthorized _ _ = estaAutenticado
 
 estaAutenticado :: Handler AuthResult

@@ -49,7 +49,7 @@ getPacienteindexR = do
                 <h1> Bem vindo.
                 <h2><a href=@{HelloR}>Home
                 <h2><a href=@{CadastropacienteR}>Primeiro acesso
-                <h2><a href=@{LoginR}>Login
+                <h2><a href=@{LoginpacR}>Login
             |]
 
 getPacienteR :: PacienteId -> Handler Html
