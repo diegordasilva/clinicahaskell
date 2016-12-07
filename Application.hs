@@ -18,69 +18,100 @@ mkYesodDispatch "Sitio" resourcesSitio
 getHelloR :: Handler Html
 getHelloR = defaultLayout $ do
     sessao <- lookupSession "_ID"
+    addStylesheetRemote "https://fonts.googleapis.com/css?family=Lato:300,400,700|Pacifico"
     toWidget [lucius|
         
+        body {
+            background-color: #b3cccc;
+        }
         h1 { 
             color: #339933;
 		    text-align: center;
-		    font-family: "Verdana";
 		    font-size: 30px;
+		    font-family: 'Pacifico', cursive;
+			display: inline-block;
+			height: inherit;
+			left: 0;
+			line-height: inherit;
+			margin: 0;
+			padding: 0;
+			position: absolute;
+			top: 0;
+			text-transform: none;
+			font-weight: normal;
+			padding: 0;
         }
         
         ul {
 	        padding:0px;
 	        margin:0px;
-	        background-color:#EDEDED;
+	        background-color:#e6f5ff;
 	        list-style:none;
         }
         
         ul li { display: inline; }
         
-        ul li a {
+        ul li h2 {
+            
+            font-size: 25px;
+		    font-family: Verdana;
+		    display: inline;
+        }
+        
+        ul li h2 a {
 	        padding: 2px 10px;
 	        display: inline-block;
-	        background-color:#EDEDED;
+	        background-color:#e6f5ff;
 	        color: #333;
 	        text-decoration: none;
-	        border-bottom:3px solid #EDEDED;
+	        border-bottom:3px solid #006633;
         }
 
-        ul li a:hover {
+        ul li h2 a:hover {
 	        background-color:#D6D6D6;
 	        color: #6D6D6D;
 	        border-bottom:3px solid #EA0000;
         }
+        
+        teste {
+            
+            background-color:#EA0000;
+            
+        }
+        
     |]
     [whamlet|
-        <h1> Clinica Haskell! 
+        <div #teste>
+        <h1>Clinica Haskell
             <ul>
-                <li> <a href=@{HelloR}>Home</a>
-                <li> <a href=@{CadastropacienteR}>Cadastro de Pacientes</a>
-                <li> <a href=@{CadastrofuncionarioR}> Cadastro de Funcionarios</a>
-                <li> <a href=@{LoginR}>Login</a>
+                <li><h2><a href=@{HelloR}>Home</a>
+                <li><h2><a href=@{CadastropacienteR}>Cadastro de Pacientes</a>
+                <li><h2> <a href=@{CadastrofuncionarioR}>Cadastro de Funcionarios</a>
+                <li><h2> <a href=@{LoginR}>Login</a>
             $maybe sess <- sessao
                 <form method=post action=@{LogoutR}>
                     <input type="submit" value="Logout">
     |]
+    
     {-[whamlet|
-        <h1> Clinica Haskell
-           <body class="homepage">
-                <div id="site">
+        <h1>Clinica Haskell
+           <body #homepage>
+                <div #site>
                     <ul>
                         <li><a href=@{HelloR}>Homepage
-                        <li><a href=@{CadastrofuncionarioR} class="button button-style1">Cadastro de Funcionarios
-                        <li><a href=@{CadastropacienteR} class="button button-style1">Cadastro de Pacientes 
+                        <li><a href=@{CadastrofuncionarioR}>Cadastro de Funcionarios
+                        <li><a href=@{CadastropacienteR}>Cadastro de Pacientes 
                     <h3>Area de Pacientes
-                    <section class="4u">
-                        <span class="pennant"><span class="fa fa-lock">
+                    <section #4u>
+                        <span #pennant><span #fa fa-lock>
                             <h3>Area de Funcionarios
                             <p>Texto funcionarios.
-                    <section class="4u">
-                        <span class="pennant"><span class="fa fa-globe">
+                    <section #4u>
+                        <span #pennant><span #fa fa-globe>
                             <h3>Agendamento de consultas
                             <p>Nesta area é possivel agendar consultas.
-                            <a href=@{AgendamentoR} class="button button-style1">Saiba mais
-                    <div id="site">
+                            <a href=@{AgendamentoR} >Saiba mais
+                    <div #site>
                     <p>Trabalho de Haskell desenvolvido por Bruno Felippe, Diego Rogrigues e Thor Cortes. 2016.
 
 |]-}

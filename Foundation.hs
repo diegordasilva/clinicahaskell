@@ -50,13 +50,15 @@ Agendamento
 |]
 
 staticFiles "static"
+
+
 mkMessage "Sitio" "messages" "pt-br"
 mkYesodData "Sitio" $(parseRoutesFile "routes")
 
 
 instance YesodPersist Sitio where
-   type YesodPersistBackend Sitio = SqlBackend
-   runDB f = do
+    type YesodPersistBackend Sitio = SqlBackend
+    runDB f = do
        master <- getYesod
        let pool = connPool master
        runSqlPool f pool
@@ -79,7 +81,7 @@ estaAutenticado = do
 type Form a = Html -> MForm Handler (FormResult a, Widget)
 
 instance RenderMessage Sitio FormMessage where
-    renderMessage _ _ = defaultFormMessage
+   renderMessage _ _ = defaultFormMessage
 
 -- FUNCAO PARA GERAR FORMULARIOS DE UMA MANEIRA GENERICA
 widgetForm :: Route Sitio -> Enctype -> Widget -> Text -> Widget
