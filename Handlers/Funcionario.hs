@@ -40,6 +40,18 @@ postCadastrofuncionarioR = do
                               funcid <- runDB $ insert funcionario
                               redirect (FuncionarioR funcid)
                     _ -> redirect CadastrofuncionarioR
+                    
+getFuncionarioRindexR :: Handler Html
+getFuncionarioRindexR = do
+        defaultLayout $ do
+            [whamlet|
+                <h1> Bem vindo.
+                <h2><a href=@{HelloR}>Home
+                <h2><a href=@{CadastrofuncionarioR}>Cadastro de Funcionario
+                <h2><a href=@{LoginR}>Login
+                
+            |]                    
+
 
 getFuncionarioR :: FuncionarioId -> Handler Html
 getFuncionarioR funcid = do

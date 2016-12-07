@@ -16,9 +16,14 @@ formAgendamento :: Form [MedicoId]
 formAgendamento = renderDivs $ areq (multiSelectField medicoLista) "Lista de medicos" Nothing
               where
                 medicoLista = do
-                    medico <- runDB $ selectList [] [Asc MedicoId]
-                    optionsPairs $ Prelude.map (\m -> (mconcat [medicoNome $ entityVal m, " - ", medicoEspecialidade $ entityVal m, " - ", pack $ show $ medicoCrm $ entityVal m], entityKey m)) medico
+                    entidade <- runDB $ selectList [] [Asc MedicoNome]
+                    --optionsPairs $ Prelude.map (\v -> (mconcat [vooOrigem $ entityVal v, " - ", vooDestino $ entityVal v, " - ", pack $ show $ vooPreco $ entityVal v, " - ", pack $ show $ vooEmbarque $ entityVal v], entityKey v)) voos
+                    optionsPairs $ Prelude.map (\m -> (mconcat [medicoNome $ entityVal m, " - ", medicoEspecialidade $ entityVal m, " - ", pack $ show $ medicoCrm $ entityVal m], entityKey m)) entidade
 
+
+--agendamento = do
+       --entidades <- runDB $ selectList [] [Asc MedicoNome] 
+       --optionsPairs $ fmap (\ent -> (departamentoSigla $ entityVal ent, entityKey ent)) entidades-}
 
 getAgendamentoR :: Handler Html
 getAgendamentoR = do
@@ -27,7 +32,7 @@ getAgendamentoR = do
         [whamlet|
             <form action=@{AgendamentoR} method=post enctype=#{enctype}>
                 ^{widget}
-                <input type="submit" value="Cadastrar">
+                <input type="submit" value="Agendar">
         |]
 
 postAgendamentoR :: Handler Html

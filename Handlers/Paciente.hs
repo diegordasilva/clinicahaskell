@@ -20,9 +20,7 @@ formPaciente = renderDivs $ Paciente <$>
              areq emailField "E-mail" Nothing <*>
              areq passwordField "Senha" Nothing
 
---agendamento = do
-       --entidades <- runDB $ selectList [] [Asc MedicoNome] 
-       --optionsPairs $ fmap (\ent -> (departamentoSigla $ entityVal ent, entityKey ent)) entidades-}
+
 
 getCadastropacienteR :: Handler Html
 getCadastropacienteR = do
@@ -43,10 +41,20 @@ postCadastropacienteR = do
                               pacid <- runDB $ insert paciente 
                               redirect (PacienteR pacid)
                     _ -> redirect CadastropacienteR
+                    
+getPacienteindexR :: Handler Html
+getPacienteindexR = do
+        defaultLayout $ do
+            [whamlet|
+                <h1> Bem vindo.
+                <h2><a href=@{HelloR}>Home
+                <h2><a href=@{CadastropacienteR}>Primeiro acesso
+                <h2><a href=@{LoginR}>Login
+            |]
 
 getPacienteR :: PacienteId -> Handler Html
-getPacienteR pid = do
-             paciente <- runDB $ get404 pid 
+getPacienteR pacid = do
+             paciente <- runDB $ get404 pacid 
              defaultLayout [whamlet| 
                  <h1> Seja bem-vindo #{pacienteNome paciente}
                  <p>
@@ -63,8 +71,8 @@ getPacienteR pid = do
              |]
              
 postPacienteR :: PacienteId -> Handler Html
-postPacienteR pid = do
-     runDB $ delete pid
+postPacienteR pacid = do
+     runDB $ delete pacid
      redirect ListarpacienteR
 
 getListarpacienteR :: Handler Html

@@ -1,4 +1,5 @@
 /                             HelloR                   GET
+/paciente/index               PacienteindexR           GET
 /paciente/cadastro            CadastropacienteR        GET   POST
 /paciente/listar              ListarpacienteR          GET 
 /perfilpac/#PacienteId        PacienteR                GET   POST
@@ -6,6 +7,7 @@
 /medico/listar                ListarmedicoR            GET
 /perfilmed/#MedicoId          MedicoR                  GET   POST
 /funcionario/cadastro         CadastrofuncionarioR     GET   POST
+/funcionario/index            FuncionarioindexR        GET
 /funcionario/listar           ListarfuncionarioR       GET
 /perfilfunc/#FuncionarioId    FuncionarioR             GET   POST
 /agendamento                  AgendamentoR             GET   POST

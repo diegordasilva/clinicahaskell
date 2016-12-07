@@ -51,10 +51,9 @@ Agendamento
 
 staticFiles "static"
 
-
-mkMessage "Sitio" "messages" "pt-br"
 mkYesodData "Sitio" $(parseRoutesFile "routes")
 
+mkMessage "Sitio" "messages" "pt-br"
 
 instance YesodPersist Sitio where
     type YesodPersistBackend Sitio = SqlBackend
@@ -69,6 +68,7 @@ instance Yesod Sitio where
     isAuthorized LoginR _ = return Authorized
     isAuthorized HelloR _ = return Authorized
     isAuthorized CadastropacienteR _ = return Authorized
+    isAuthorized CadastrofuncionarioR _ = return Authorized
     isAuthorized _ _ = estaAutenticado
 
 estaAutenticado :: Handler AuthResult

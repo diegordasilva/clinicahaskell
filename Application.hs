@@ -85,14 +85,13 @@ getHelloR = defaultLayout $ do
         <h1>Clinica Haskell
             <ul>
                 <li><h2><a href=@{HelloR}>Home</a>
-                <li><h2><a href=@{CadastropacienteR}>Cadastro de Pacientes</a>
-                <li><h2> <a href=@{CadastrofuncionarioR}>Cadastro de Funcionarios</a>
-                <li><h2> <a href=@{LoginR}>Login</a>
+                <li><h2><a href=@{PacienteindexR}>Area de Pacientes</a>
+                <li><h2> <a href=@{FuncionarioindexR}>Area de Funcionarios</a>
+                <li><h2> <a href=@{LoginR}>Login<
             $maybe sess <- sessao
                 <form method=post action=@{LogoutR}>
                     <input type="submit" value="Logout">
     |]
-    
     {-[whamlet|
         <h1>Clinica Haskell
            <body #homepage>
