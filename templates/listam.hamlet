@@ -1,4 +1,5 @@
-<h1> Medicos cadastradas:
+<h1> Medicos cadastrados:
+<p>
     $forall Entity medid medico <- listaM
         <a href=@{MedicoR medid}> #{medicoNome medico} 
             <form method=post action=@{MedicoR medid}> 

@@ -50,4 +50,8 @@ getListarmedicoR = do
              listaM <- runDB $ selectList [] [Asc MedicoNome]
              defaultLayout $ do
                  $(whamletFile "templates/listam.hamlet") 
+                 [whamlet| 
+                 <br>
+                     <span style="font-family:Verdana"><a href=@{HelloR}><button>Home</button></a></span>
+                 |]
                  --toWidget $(luciusFile "templates/lista.lucius")

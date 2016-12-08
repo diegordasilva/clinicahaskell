@@ -63,8 +63,8 @@ instance YesodPersist Sitio where
        runSqlPool f pool
 
 instance Yesod Sitio where
+
     authRoute _ = Just LoginfuncR
-    
     isAuthorized LoginpacR _ = return Authorized
     isAuthorized LoginfuncR _ = return Authorized
     isAuthorized HelloR _ = return Authorized

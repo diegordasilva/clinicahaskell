@@ -87,6 +87,10 @@ getHelloR = defaultLayout $ do
                 <li><h2><a href=@{HelloR}>Home</a>
                 <li><h2><a href=@{PacienteindexR}>Area de Pacientes</a>
                 <li><h2> <a href=@{FuncionarioindexR}>Area de Funcionarios</a>
+                
+                
+                <p style="font-family:Verdana">  Sua saúde não pode parar.
+                <p style="font-family:Verdana">Nossa equipe, com dezenas de médicos credenciados, atua em todas as especialidades nas cidades da Baixada Santista.
             $maybe sess <- sessao
                 <form method=post action=@{LogoutR}>
                     <input type="submit" value="Logout">

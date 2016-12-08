@@ -107,7 +107,12 @@ getPacienteindexR = do
                         <li><h2><a href=@{HelloR}>Home</a>
                         <li><h2><a href=@{CadastropacienteR}>Primeiro acesso</a>
                         <li><h2><a href=@{LoginpacR}>Login</a>
-            |]
+                        <p style="font-family:Verdana">Este é o portal do paciente.
+                        <p style="font-family:Verdana">>Favor logar no botão "LOGIN" para agendar consultas.
+                        <p style="font-family:Verdana">Caso seja sua primeira vez em nosso site, favor cadastrar no botão "PRIMEIRO ACESSO".
+                        
+                        
+            |] 
 
 getPacienteR :: PacienteId -> Handler Html
 getPacienteR pacid = do
