@@ -13,11 +13,11 @@ import Database.Persist
 
 formFuncionario :: Form Funcionario
 formFuncionario = renderDivs $ Funcionario <$>
-             areq textField "Nome" Nothing <*>
-             areq intField "Telefone" Nothing <*>
-             areq intField "CPF" Nothing <*>
-             areq textField "Endereço" Nothing <*>
-             areq emailField "E-mail" Nothing <*>
+             areq textField     "Nome" Nothing <*>
+             areq intField      "Telefone" Nothing <*>
+             areq intField      "CPF" Nothing <*>
+             areq textField     "Endereço" Nothing <*>
+             areq emailField    "E-mail" Nothing <*>
              areq passwordField "Senha" Nothing
              
              
@@ -104,26 +104,33 @@ getFuncionarioindexR = do
                 <h1> Bem vindo.
                     <ul>
                         <li><h2><a href=@{HelloR}>Home</a>
-                        <li><h2><a href=@{CadastropacienteR}>Cadastro de Funcionario</a>
-                        <li><h2><a href=@{LoginpacR}>Login</a>
+                        <li><h2><a href=@{CadastrofuncionarioR}>Cadastro de Funcionario</a>
+                        <li><h2><a href=@{LoginfuncR}>Login</a>
+                        <li><h2><a href=@{ListarmedicoR}>Lista de médicos</a>
+                        <li><h2><a href=@{ListarpacienteR}>LIsta de Pacientes</a>
             |]                    
 
 
 getFuncionarioR :: FuncionarioId -> Handler Html
 getFuncionarioR funcid = do
              funcionario <- runDB $ get404 funcid 
-             defaultLayout [whamlet| 
-                 <h1> Seja bem-vindo funcionario #{funcionarioNome funcionario}
-                 <p> Dados pessoais:
-                 <p>
-                 <p> Nome: #{funcionarioNome funcionario}
-                 <p> Telefone: #{funcionarioTelefone funcionario}
-                 <p> CPF:#{funcionarioCpf funcionario}
-                 <p> Endereço:#{funcionarioEnd funcionario}
-                 <p> E-mail:#{funcionarioEmail funcionario}
+             defaultLayout $ do 
+             [whamlet|
+                <body style="background-color: #b3cccc;"> 
+                     <span style="font-family:Verdana;">
+                        <h1 style="font-size: 30px;"> Seja bem-vindo funcionario #{funcionarioNome funcionario}
+                 <br>
+                 <p style="font-family:Verdana"> Dados pessoais:
+                 <br>
+                 <p style="font-family:Verdana"> Nome: #{funcionarioNome funcionario}
+                 <p style="font-family:Verdana"> Telefone: #{funcionarioTelefone funcionario}
+                 <p style="font-family:Verdana"> CPF:#{funcionarioCpf funcionario}
+                 <p style="font-family:Verdana"> Endereço:#{funcionarioEnd funcionario}
+                 <p style="font-family:Verdana"> E-mail:#{funcionarioEmail funcionario}
                  
-                 <p>Cadastrar Médicos:
-                 <a href=@{CadastromedicoR}>Cadastro de Médicos</a>
+                 <p style="font-family:Verdana">Cadastrar Médicos:<a href=@{CadastromedicoR}>Cadastro de Médicos</a>
+                 <br>
+                 <span style="font-family:Verdana"><a href=@{HelloR}><button>Home</button></a></span>
              |]
              
 postFuncionarioR :: FuncionarioId -> Handler Html

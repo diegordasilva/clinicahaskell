@@ -13,11 +13,11 @@ import Database.Persist
 
 formPaciente :: Form Paciente
 formPaciente = renderDivs $ Paciente <$>
-             areq textField "Nome" Nothing <*>
-             areq intField "Telefone" Nothing <*>
-             areq intField "CPF" Nothing <*>
-             areq textField "Endereço" Nothing <*>
-             areq emailField "E-mail" Nothing <*>
+             areq textField     "Nome" Nothing <*>
+             areq intField      "Telefone" Nothing <*>
+             areq intField      "CPF" Nothing <*>
+             areq textField     "Endereço" Nothing <*>
+             areq emailField    "E-mail" Nothing <*>
              areq passwordField "Senha" Nothing
 
 
