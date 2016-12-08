@@ -91,25 +91,3 @@ getHelloR = defaultLayout $ do
                 <form method=post action=@{LogoutR}>
                     <input type="submit" value="Logout">
     |]
-    {-[whamlet|
-        <h1>Clinica Haskell
-           <body #homepage>
-                <div #site>
-                    <ul>
-                        <li><a href=@{HelloR}>Homepage
-                        <li><a href=@{CadastrofuncionarioR}>Cadastro de Funcionarios
-                        <li><a href=@{CadastropacienteR}>Cadastro de Pacientes 
-                    <h3>Area de Pacientes
-                    <section #4u>
-                        <span #pennant><span #fa fa-lock>
-                            <h3>Area de Funcionarios
-                            <p>Texto funcionarios.
-                    <section #4u>
-                        <span #pennant><span #fa fa-globe>
-                            <h3>Agendamento de consultas
-                            <p>Nesta area é possivel agendar consultas.
-                            <a href=@{AgendamentoR} >Saiba mais
-                    <div #site>
-                    <p>Trabalho de Haskell desenvolvido por Bruno Felippe, Diego Rogrigues e Thor Cortes. 2016.
-
-|]-}

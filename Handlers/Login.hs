@@ -10,19 +10,24 @@ import Data.Text
 import Text.Lucius
 import Database.Persist.Postgresql
 
-formLogin :: Form (Text, Text)
-formLogin = renderDivs $ (,) <$>
-             areq emailField "E-mail" Nothing <*>
-             areq passwordField "Senha" Nothing
+formLoginpac :: Form (Text, Text)
+formLoginpac = renderDivs $ (,) <$>
+             areq emailField         "E-mail" Nothing <*>
+             areq passwordField      "Senha" Nothing
+
+formLoginfunc :: Form (Text, Text)
+formLoginfunc = renderDivs $ (,) <$>
+             areq emailField         "E-mail" Nothing <*>
+             areq passwordField      "Senha" Nothing
 
 getLoginpacR :: Handler Html
 getLoginpacR = do
-    (widget, enctype) <- generateFormPost formLogin
-    defaultLayout $ widgetForm LoginpacR enctype widget "Login"
+    (widget, enctype) <- generateFormPost formLoginpac
+    defaultLayout $ widgetForm LoginpacR enctype widget "Login Paciente"
 
 postLoginpacR :: Handler Html
 postLoginpacR = do
-            ((result, _), _) <- runFormPost formLogin
+            ((result, _), _) <- runFormPost formLoginpac
             case result of
                 FormSuccess (email, password) -> do
                    cara <- runDB $ selectFirst [PacienteEmail ==. email,
@@ -36,17 +41,17 @@ postLoginpacR = do
                 
 getLoginfuncR :: Handler Html
 getLoginfuncR = do
-    (widget, enctype) <- generateFormPost formLogin
-    defaultLayout $ widgetForm LoginfuncR enctype widget "Login"
+    (widget, enctype) <- generateFormPost formLoginfunc
+    defaultLayout $ widgetForm LoginfuncR enctype widget "Login Funcionario"
 
 postLoginfuncR :: Handler Html
 postLoginfuncR = do
-            ((result, _), _) <- runFormPost formLogin
+            ((result, _), _) <- runFormPost formLoginfunc
             case result of
                 FormSuccess (email, password) -> do
-                   cara <- runDB $ selectFirst [FuncionarioEmail ==. email,
+                   coroa <- runDB $ selectFirst [FuncionarioEmail ==. email,
                                                 FuncionarioSenha ==. password] []
-                   case cara of
+                   case coroa of
                        Just (Entity funcid funcionario) -> do
                            setSession "_ID" (pack $ show $ fromSqlKey funcid)
                            redirect (FuncionarioR funcid)

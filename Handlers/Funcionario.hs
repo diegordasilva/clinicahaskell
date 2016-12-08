@@ -105,6 +105,7 @@ getFuncionarioindexR = do
                     <ul>
                         <li><h2><a href=@{HelloR}>Home</a>
                         <li><h2><a href=@{CadastrofuncionarioR}>Cadastro de Funcionario</a>
+                        <li><h2><a href=@{CadastromedicoR}>Cadastro de Medicos</a>
                         <li><h2><a href=@{LoginfuncR}>Login</a>
                         <li><h2><a href=@{ListarmedicoR}>Lista de médicos</a>
                         <li><h2><a href=@{ListarpacienteR}>LIsta de Pacientes</a>

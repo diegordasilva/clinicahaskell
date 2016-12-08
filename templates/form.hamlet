@@ -2,6 +2,6 @@
     #{y}
     <form method=post action=@{x} enctype=#{enctype}>
         ^{widget}
-        <input type="submit" value="Cadastrar">
+        <input type="submit" value="Confirmar">
         
         
