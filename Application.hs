@@ -73,15 +73,17 @@ getHelloR = defaultLayout $ do
 	        border-bottom:3px solid #EA0000;
         }
         
-        teste {
+        p {
             
-            background-color:#EA0000;
+            font-family:verdana;
+            text-align: center;
+            color: #1f2e2e;
+            font-size: 15px;
             
         }
         
     |]
     [whamlet|
-        <div #teste>
         <h1>Clinica Haskell
             <ul>
                 <li><h2><a href=@{HelloR}>Home</a>
@@ -89,8 +91,8 @@ getHelloR = defaultLayout $ do
                 <li><h2> <a href=@{FuncionarioindexR}>Area de Funcionarios</a>
                 
                 
-                <p style="font-family:Verdana">  Sua saúde não pode parar.
-                <p style="font-family:Verdana">Nossa equipe, com dezenas de médicos credenciados, atua em todas as especialidades nas cidades da Baixada Santista.
+            <p>  Sua saúde não pode parar.
+            <p>Nossa equipe, com dezenas de médicos credenciados, atua em todas as especialidades nas cidades da Baixada Santista.
             $maybe sess <- sessao
                 <form method=post action=@{LogoutR}>
                     <input type="submit" value="Logout">

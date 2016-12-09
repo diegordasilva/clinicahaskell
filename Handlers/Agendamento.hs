@@ -1,6 +1,7 @@
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE OverloadedStrings    #-}
+{-# LANGUAGE TemplateHaskell      #-}
+{-# LANGUAGE ViewPatterns         #-}
 {-# LANGUAGE QuasiQuotes       #-}
-
 
 module Handlers.Agendamento where
 
@@ -10,15 +11,15 @@ import Database.Persist.Postgresql
 import Data.Text
 import Data.Monoid
 import Control.Monad.Logger (runStdoutLoggingT)
-import Data.Time.Calendar
+import Control.Applicative
+import Data.Time
 
 formAgendamento :: Form [MedicoId]
 formAgendamento = renderDivs $ areq (multiSelectField medicoLista) "Lista de medicos" Nothing
               where
                 medicoLista = do
-                    entidade <- runDB $ selectList [] [Asc MedicoNome]
-                    --optionsPairs $ Prelude.map (\v -> (mconcat [vooOrigem $ entityVal v, " - ", vooDestino $ entityVal v, " - ", pack $ show $ vooPreco $ entityVal v, " - ", pack $ show $ vooEmbarque $ entityVal v], entityKey v)) voos
-                    optionsPairs $ Prelude.map (\m -> (mconcat [medicoNome $ entityVal m, " - ", medicoEspecialidade $ entityVal m, " - ", pack $ show $ medicoCrm $ entityVal m], entityKey m)) entidade
+                    entidades <- runDB $ selectList [] [Asc MedicoNome]
+                    optionsPairs $ Prelude.map (\m -> (mconcat [medicoNome $ entityVal m, " - ", medicoEspecialidade $ entityVal m, " - ", pack $ show $ medicoCrm $ entityVal m], entityKey m)) entidades
 
 
 --agendamento = do
@@ -40,11 +41,13 @@ postAgendamentoR = do
         ((result,_),_)<- runFormPost formAgendamento
         case result of
             FormSuccess agendamentos -> do
-                pacienteId <- lookupSession "_ID"
-                case pacienteId of
+                paId <- lookupSession "_ID"
+                case paId of
                     Nothing -> redirect HelloR
-                    Just pacienteStr -> do
-                        pacid <- (return $ read $ unpack pacienteStr) :: Handler PacienteId
-                        sequence $ fmap (\medid -> runDB $ insert $ Agendamento pacid medid) agendamentos
+                    Just paStr -> do
+                        pid <- (return $ read $ unpack paStr) :: Handler PacienteId
+                        sequence $ fmap (\mid -> runDB $ insert $ Agendamento pid mid) agendamentos
                         defaultLayout [whamlet| <h1> Agendamento cadastrado com sucesso! |]
             _ -> redirect HelloR
+            
+        
